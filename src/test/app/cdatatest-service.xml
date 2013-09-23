@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:spring="http://www.springframework.org/schema/beans"
+    xmlns:cxf="http://www.mulesoft.org/schema/mule/cxf"
+    xmlns:https="http://www.mulesoft.org/schema/mule/https"
+    xmlns="http://www.mulesoft.org/schema/mule/core"
+    xsi:schemaLocation="
+		http://www.springframework.org/schema/beans    http://www.springframework.org/schema/beans/spring-beans-current.xsd
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/https http://www.mulesoft.org/schema/mule/https/current/mule-https.xsd
+		http://www.mulesoft.org/schema/mule/cxf http://www.mulesoft.org/schema/mule/cxf/current/mule-cxf.xsd" >
+
+      <custom-transformer name="cdataTest" class="transformer.TransformXmlStreamToStringTransformer"/>
+
+      <flow name="cdatatest-flow" >
+        <inbound-endpoint 
+        	address="http://localhost:8080/cdatatest"   
+ 			name="cdatatest"
+            exchange-pattern="request-response">
+        </inbound-endpoint>
+ 	  
+        <!--
+        
+        From http://www.mulesoft.org/documentation/display/current/Proxying+Web+Services+with+CXF
+        
+        Normally when building CXF web services, you'll databind the XML to POJOs. A CXF component might 
+        receive an OrderRequest object, or you might send an OrderRequest object via a CXF outbound router. 
+        However, it is often useful to work with the XML directly when building web services or consuming 
+        other web services. The CXF module provides the ability to do this. 
+        
+        cxf:proxy-service will make the SOAP envelope available in the Mule message payload as an XMLStreamReader.  -->
+        
+        <cxf:proxy-service
+            namespace="urn:skl:tjanst1:rivtabp20"
+            payload="envelope"
+            service="Tjanst1Service"
+            wsdlLocation="classpath:/schemas/interactions/tjanst1Interaction/tjanst1-1.0.wsdl" />
+            
+           <transformer ref="cdataTest" />
+
+         <echo-component />
+    </flow>
+</mule>
