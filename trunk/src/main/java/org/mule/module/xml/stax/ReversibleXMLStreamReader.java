@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import javanet.staxutils.events.AbstractCharactersEvent;
 import javanet.staxutils.events.AttributeEvent;
 import javanet.staxutils.events.CDataEvent;
 import javanet.staxutils.events.CharactersEvent;
@@ -578,18 +579,16 @@ public class ReversibleXMLStreamReader extends DelegateXMLStreamReader
             {
                 return ((CommentEvent) current).getText();
             }
-            //#####################################################################
-            //FIX for case 00008941, CData not handled in ReversibleXMLStreamReader
-            //#####################################################################
-            else if (current instanceof CDataEvent)
-            {
-                return ((CDataEvent) current).getData();
-            }
-            //#####################################################################
             else
             {
-                return ((CharactersEvent) current).getData();
+                //#####################################################################
+                //FIX for case 00008941, CData not handled in ReversibleXMLStreamReader
+                //#####################################################################
+                return ((AbstractCharactersEvent) current).getData();
+                //return ((CharactersEvent) current).getData();
+                //#####################################################################
             }
+           
         }
         else
         {
