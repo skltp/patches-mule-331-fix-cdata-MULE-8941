@@ -54,7 +54,7 @@ java.lang.ClassCastException: javanet.staxutils.events.CDataEvent cannot be cast
 The fix in org.mule.module.xml.stax.ReversibleXMLStreamReader
 #############################################################
 
-In org.mule.module.xml.stax.ReversibleXMLStreamReader, line 581-588 is added:
+In org.mule.module.xml.stax.ReversibleXMLStreamReader, line 584-589 is changed:
 
 public String getText()
     {
@@ -64,17 +64,14 @@ public String getText()
             {
                 return ((CommentEvent) current).getText();
             }
-            //#####################################################################
-            //FIX for case 00008941, CData not handled in ReversibleXMLStreamReader
-            //#####################################################################
-            else if (current instanceof CDataEvent)
-            {
-                return ((CDataEvent) current).getData();
-            }
-            //#####################################################################
             else
             {
-                return ((CharactersEvent) current).getData();
+                //#####################################################################
+                //FIX for case 00008941, CData not handled in ReversibleXMLStreamReader
+                //#####################################################################
+                return ((AbstractCharactersEvent) current).getData();
+                //return ((CharactersEvent) current).getData();
+                //#####################################################################
             }
         }
         else
