@@ -1,6 +1,7 @@
 MuleSoft casenr: 00008941
 
-In the case when the request contains CData elements there is an error indicating problems in ReversibleXMLStreamReader.
+1, In the case when the request contains CData elements there is an error indicating problems in ReversibleXMLStreamReader.
+2, In the case when the request contains CData elements, the CData elements are not copied using XMLUtils
 
 ##############################
 The request containing CData
@@ -19,7 +20,7 @@ The request containing CData
 </soapenv:Envelope>
 
 ########################
-The error occuring in log
+The error occuring in log pointing at ReversibleXMLStreamReader
 ########################
 
 INFO  2013-09-16 13:46:02,896 [[cdatatest-reversiblexmlstreamreader].connector.http.mule.default.receiver.02] org.mule.component.simple.LogComponent: 
@@ -79,6 +80,53 @@ public String getText()
             return super.getText();
         }
 }
+
+##############################################################
+The fix in org.mule.module.xml.util.XMLUtils
+#############################################################
+
+In org.mule.module.xml.util.XMLUtils, line 468-474 is changed:
+
+ public static void copy(XMLStreamReader reader, XMLStreamWriter writer,
+                            boolean fragment) throws XMLStreamException {
+        // number of elements read in
+        int read = 0;
+        int event = reader.getEventType();
+
+        while (reader.hasNext()) {
+            switch (event) {
+            case XMLStreamConstants.START_ELEMENT:
+                read++;
+                writeStartElement(reader, writer);
+                break;
+            case XMLStreamConstants.END_ELEMENT:
+                writer.writeEndElement();
+                read--;
+                if (read <= 0 && !fragment) {
+                    return;
+                }
+                break;
+            case XMLStreamConstants.CHARACTERS:
+                writer.writeCharacters(reader.getText());
+                break;
+            //######################################################
+            //FIX for case 00008941, CData not handled in XMLUtils.copy
+            //######################################################
+            case XMLStreamConstants.CDATA:
+                writer.writeCData(reader.getText());
+                break;
+            //######################################################
+            case XMLStreamConstants.START_DOCUMENT:
+            case XMLStreamConstants.END_DOCUMENT:
+            case XMLStreamConstants.ATTRIBUTE:
+            case XMLStreamConstants.NAMESPACE:
+                break;
+            default:
+                break;
+            }
+            event = reader.next();
+        }
+    }
 
 ############################################
 Apply the patch
