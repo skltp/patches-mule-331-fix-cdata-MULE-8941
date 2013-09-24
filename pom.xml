@@ -16,9 +16,9 @@
 	</properties>
 	
 	<scm>
-		<connection>scm:svn:https://skltp.googlecode.com/svn/tp/mule/patches-mule-3.3.1-fix-cdata-MULE-8941</connection>
-		<developerConnection>scm:svn:https://skltp.googlecode.com/svn/tp/mule/patches-mule-3.3.1-fix-cdata-MULE-8941</developerConnection>
-		<url>http://skltp.googlecode.com/svn/tp/mule/patches-mule-3.3.1-fix-cdata-MULE-8941</url>
+		<connection>scm:svn:https://skltp.googlecode.com/svn/tp/mule/patches-mule-3.3.1-fix-cdata-MULE-8941/trunk</connection>
+		<developerConnection>scm:svn:https://skltp.googlecode.com/svn/tp/mule/patches-mule-3.3.1-fix-cdata-MULE-8941/trunk</developerConnection>
+		<url>http://skltp.googlecode.com/svn/tp/mule/patches-mule-3.3.1-fix-cdata-MULE-8941/trunk</url>
   	 </scm>
 
 	<dependencies>
