@@ -3,7 +3,7 @@
 
 	<groupId>se.skltp.mule</groupId>
 	<artifactId>patches-mule-3.3.1-fix-cdata-MULE-8941</artifactId>
-	<version>1.0</version>
+	<version>1.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>patches-mule-3.3.1-fix-cdata-MULE-8941</name>
@@ -15,9 +15,9 @@
 	</properties>
 	
 	<scm>
-		<connection>scm:svn:https://skltp.googlecode.com/svn/tp/mule/patches-mule-3.3.1-fix-cdata-MULE-8941/tags/patches-mule-3.3.1-fix-cdata-MULE-8941-1.0</connection>
-		<developerConnection>scm:svn:https://skltp.googlecode.com/svn/tp/mule/patches-mule-3.3.1-fix-cdata-MULE-8941/tags/patches-mule-3.3.1-fix-cdata-MULE-8941-1.0</developerConnection>
-		<url>http://skltp.googlecode.com/svn/tp/mule/patches-mule-3.3.1-fix-cdata-MULE-8941/tags/patches-mule-3.3.1-fix-cdata-MULE-8941-1.0</url>
+		<connection>scm:svn:https://skltp.googlecode.com/svn/tp/mule/patches-mule-3.3.1-fix-cdata-MULE-8941/trunk</connection>
+		<developerConnection>scm:svn:https://skltp.googlecode.com/svn/tp/mule/patches-mule-3.3.1-fix-cdata-MULE-8941/trunk</developerConnection>
+		<url>http://skltp.googlecode.com/svn/tp/mule/patches-mule-3.3.1-fix-cdata-MULE-8941/trunk</url>
   	 </scm>
 
 	<dependencies>
