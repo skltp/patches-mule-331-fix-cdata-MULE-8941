@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>se.skltp.tp.mule</groupId>
+	<groupId>se.skltp.mule</groupId>
 	<artifactId>patches-mule-3.3.1-fix-cdata-MULE-8941</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
@@ -16,9 +16,9 @@
 	</properties>
 	
 	<scm>
-		<connection>scm:svn:https://skltp.googlecode.com/svn/tp/vp/patches/patches-mule-3.3.1-fix-cdata-MULE-8941</connection>
-		<developerConnection>scm:svn:https://skltp.googlecode.com/svn/tp/vp/patches/patches-mule-3.3.1-fix-cdata-MULE-8941</developerConnection>
-		<url>http://skltp.googlecode.com/svn/tp/vp/patches/patches-mule-3.3.1-fix-cdata-MULE-8941</url>
+		<connection>scm:svn:https://skltp.googlecode.com/svn/tp/mule/patches-mule-3.3.1-fix-cdata-MULE-8941</connection>
+		<developerConnection>scm:svn:https://skltp.googlecode.com/svn/tp/mule/patches-mule-3.3.1-fix-cdata-MULE-8941</developerConnection>
+		<url>http://skltp.googlecode.com/svn/tp/mule/patches-mule-3.3.1-fix-cdata-MULE-8941</url>
   	 </scm>
 
 	<dependencies>
