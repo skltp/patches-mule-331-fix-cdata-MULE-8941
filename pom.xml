@@ -13,12 +13,13 @@
 		<mule.version>3.3.1</mule.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
-	
+
 	<scm>
-		<connection>scm:svn:https://skltp.googlecode.com/svn/tp/mule/patches-mule-3.3.1-fix-cdata-MULE-8941/trunk</connection>
-		<developerConnection>scm:svn:https://skltp.googlecode.com/svn/tp/mule/patches-mule-3.3.1-fix-cdata-MULE-8941/trunk</developerConnection>
-		<url>http://skltp.googlecode.com/svn/tp/mule/patches-mule-3.3.1-fix-cdata-MULE-8941/trunk</url>
-  	 </scm>
+		<url>http://github.com/skltp/patches-mule-3.3.1-fix-cdata-MULE-8941</url>
+		<connection>scm:git:git://github.com/skltp/patches-mule-3.3.1-fix-cdata-MULE-8941.git</connection>
+		<developerConnection>scm:git:git://github.com/skltp/patches-mule-3.3.1-fix-cdata-MULE-8941.git</developerConnection>
+		<tag>HEAD</tag>
+	</scm>
 
 	<dependencies>
 		<!-- Mule dependencies -->
@@ -86,11 +87,17 @@
         </plugins>
     </pluginManagement>
 		<plugins>
-            <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-release-plugin</artifactId>
-              <version>2.4.1</version>
-            </plugin>
+      <plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-release-plugin</artifactId>
+					<version>2.5.1</version>
+					<configuration>
+							<autoVersionSubmodules>true</autoVersionSubmodules>
+							<tagNameFormat>v@{project.version}</tagNameFormat>
+							<pushChanges>false</pushChanges>
+							<localCheckout>true</localCheckout>
+					</configuration>
+			</plugin>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
